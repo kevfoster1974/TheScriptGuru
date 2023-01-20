@@ -1,3 +1,19 @@
+<#
+.SYNOPSIS
+    I've always had issues obtaining the object ID's for devices within Intune for bulk uploads, many times I would get multiple ID's for the same asset
+    This script only obatins the ID's for the most recent syync device/ID alongside the users email.
+     
+.DESCRIPTION
+    Same as above
+.NOTES
+    Filename: Change-DNSServers.ps1
+    Version: 1.0
+    Author: Kevin Foster
+    
+    Change "TOBECHANGE" with the first general charactors of the devices within your environment ... ie if all your devices start with LT or DT enter that in 
+    this field 
+#>
+
 # Import the required AzureAD PowerShell module
 Import-Module AzureAD
 
