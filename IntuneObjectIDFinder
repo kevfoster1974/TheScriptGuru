@@ -6,8 +6,7 @@
 .DESCRIPTION
     Same as above
 .NOTES
-    Filename: Change-DNSServers.ps1
-    Version: 1.0
+    Filename: IntuneObjectIDFinder.ps1
     Author: Kevin Foster
     
     Change "TOBECHANGED" with the first general charactors of the devices within your environment ... ie if all your devices start with LT or DT enter that in 
