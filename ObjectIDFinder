@@ -1,0 +1,23 @@
+# Import the required AzureAD PowerShell module
+Import-Module AzureAD
+
+# Connect to the Azure AD service
+Connect-AzureAD
+
+# Define the output file path
+$Output="c:\Temp\IntuneBulkUpload.csv"
+
+# Define the Intune bulk upload template header
+"DeviceId,Action,Platform,ComplianceState,ManagementProfile,Category,Description,Notes" | Out-File $Output
+
+# Retrieve the list of device names from the text file
+$DeviceNames = Get-Content "C:\devicenames.txt"
+
+# Retrieve the Object IDs, DisplayName, LastDirSyncTime, and AssignedUserEmail for the devices and sort them by DisplayName and ApproximateLastLogonTimeStamp
+foreach ($DeviceName in $DeviceNames) {
+    $Devices = Get-AzureADDevice -SearchString $DeviceName
+    $Device = $Devices | Where-Object {$_.DeviceOSType -eq "Windows" -and $_.DisplayName -like "Amey*" -and $_.LastDirSyncTime -ne $null} | where-object -property DisplayName -eq $DeviceName
+    $User = Get-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId
+    # Append the Object ID and other information to the Intune bulk upload template CSV file
+    "$($Device.ObjectId),Add,Windows,NotApplicable,NotApplicable,NotApplicable,$($Device.DisplayName),$($User.UserPrincipalName)" | Out-File $Output -Append
+}
