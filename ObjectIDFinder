@@ -10,7 +10,7 @@
     Version: 1.0
     Author: Kevin Foster
     
-    Change "TOBECHANGE" with the first general charactors of the devices within your environment ... ie if all your devices start with LT or DT enter that in 
+    Change "TOBECHANGED" with the first general charactors of the devices within your environment ... ie if all your devices start with LT or DT enter that in 
     this field 
 #>
 
@@ -32,7 +32,7 @@ $DeviceNames = Get-Content "C:\devicenames.txt"
 # Retrieve the Object IDs, DisplayName, LastDirSyncTime, and AssignedUserEmail for the devices and sort them by DisplayName and ApproximateLastLogonTimeStamp
 foreach ($DeviceName in $DeviceNames) {
     $Devices = Get-AzureADDevice -SearchString $DeviceName
-    $Device = $Devices | Where-Object {$_.DeviceOSType -eq "Windows" -and $_.DisplayName -like "Amey*" -and $_.LastDirSyncTime -ne $null} | where-object -property DisplayName -eq $DeviceName
+    $Device = $Devices | Where-Object {$_.DeviceOSType -eq "Windows" -and $_.DisplayName -like "TOBECHANGED*" -and $_.LastDirSyncTime -ne $null} | where-object -property DisplayName -eq $DeviceName
     $User = Get-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId
     # Append the Object ID and other information to the Intune bulk upload template CSV file
     "$($Device.ObjectId),Add,Windows,NotApplicable,NotApplicable,NotApplicable,$($Device.DisplayName),$($User.UserPrincipalName)" | Out-File $Output -Append
