@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+Example script that will rename a file named "preferences" to "preferences-OLD" if "gui.update.enabled: TRUE" exist witin it, and copy a new version 
+of the file
+     
+.DESCRIPTION
+    Same as above
+.NOTES
+    Filename: ReplaceFileIf-TextExist.ps1
+    Author: Kevin Foster
+
+#>
+
+
+
 $preferencesFile = "C:\Temp\Temp\preferences"
 $tempPreferences = "c:\temp\preferences"
 $preferencesContent = Get-Content $preferencesFile
