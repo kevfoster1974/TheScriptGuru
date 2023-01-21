@@ -1,5 +1,5 @@
 # Intune Detection Script
-# Check if Firefox is installed in the user context, if so ... then this script will remove it.  Should be used when creating an application
+# Use this script as a detection method for a firefox removal application within intune
  
 # Author: Kevin Foster
 # Version: 1.00
