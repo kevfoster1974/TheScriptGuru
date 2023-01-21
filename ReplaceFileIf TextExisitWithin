@@ -1,0 +1,10 @@
+$preferencesFile = "C:\Temp\Temp\preferences"
+$tempPreferences = "c:\temp\preferences"
+$preferencesContent = Get-Content $preferencesFile
+
+if (Test-Path $preferencesFile) {
+    if ($preferencesContent -match "gui.update.enabled: TRUE") {
+        Rename-Item $preferencesFile -NewName "preferences-OLD"
+        Copy-Item $tempPreferences $preferencesFile
+    }
+}
