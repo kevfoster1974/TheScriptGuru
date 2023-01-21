@@ -1,0 +1,13 @@
+# Intune Detection Script
+# Check if Firefox is installed in the user context, if so ... then this script will remove it.  Should be used when creating an application
+ 
+# Author: Kevin Foster
+# Version: 1.00
+ 
+$file =  $env:LOCALAPPDATA + "\Mozilla Firefox\uninstall\helper.exe"
+if(!(Test-Path $file))
+{
+    Write-Host "NOT Found"
+
+    exit 0
+}
