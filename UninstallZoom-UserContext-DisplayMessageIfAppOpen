@@ -1,0 +1,53 @@
+
+<#
+.SYNOPSIS
+
+To be used to remove zoom from a users profile .... run this as an application in the users context
+
+This  script will kill the process "Zoom" if running, and display a message stating that the application will be uninstalled after 5 minutes.  It will only 
+display the message if the user has zoom running 
+
+The message that will be displayed will display on top of all windows.
+
+After the countdown, then the uninstall will be ran 
+
+.DESCRIPTION
+    Same as above
+    
+.NOTES
+    Filename: UninstallZoom-UserContext-DisplayMessageIfAppOpen.ps1
+    Author: Kevin Foster
+
+#>
+
+ 
+#-----------------------------[Parameters]----------------------------------
+$UninstallString = $env:USERPROFILE + "\AppData\Roaming\Zoom\uninstall\Installer.exe"
+$LeftOverFolder = $env:USERPROFILE + "\AppData\Roaming\Zoom"
+$UninstallString1 = $env:USERPROFILE + "\Downloads\Zoom*.exe"
+$Arguments = "/uninstall /silent"
+ 
+#-----------------------------[Declarations]--------------------------------
+
+if (Get-Process -Name "Zoom" -ErrorAction SilentlyContinue) {
+
+$title = "Zoom Uninstall Warning"
+$message = "Please Close Zoom. It will be automatically closed and uninstalled in 5 minutes."
+$secs = 15
+
+$wsh = New-Object -ComObject Wscript.Shell
+$wsh.Popup($message, $secs, $title, 0x0 + 0x40)
+
+Start-Sleep -Seconds 300
+Stop-Process -name Zoom -force
+}
+
+Start-Process -wait -FilePath $UninstallString -ArgumentList $Arguments
+
+If ((Test-Path $UninstallString1)) {
+Remove-Item "$env:USERPROFILE\Downloads\Zoom*.exe" -Recurse
+}
+
+If ((Test-Path $LeftOverFolder)) {
+Remove-Item "$env:USERPROFILE\AppData\Roaming\Zoom" -Recurse -Force
+}
