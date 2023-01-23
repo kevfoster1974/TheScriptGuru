@@ -1,0 +1,16 @@
+﻿$AppName = "*Firefox*"
+$Path = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+$subkeys = Get-ChildItem -Path $Path 
+$flag = $false
+foreach($subkey in $subkeys)
+{
+    $displayname = (Get-ItemProperty -Path $subkey.PsPath).DisplayName
+    if($displayname -like $AppName)
+    {
+        $flag = $true
+        break
+    }
+}
+if(!$flag) {
+    Write-Host "NOT Found"
+}
