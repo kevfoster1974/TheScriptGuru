@@ -1,11 +1,11 @@
-﻿# Remediation script
-# Check if Firefox is installed in the user context, if so ... then this script will remove it
+# Remediation script
+# Check if Firefox is installed in the user context, by searching the logged on users registry if so ... then this script will remove it
  
 # Author: Kevin Foster
 # Date: 13th January 2023
 # Version: 1.00
  
-#-----------------------------[Parameters]----------------------------------
+#-----------------------------[Functions]----------------------------------
 $Arguments = "/S"
 $RemoveFile = $env:USERPROFILE + "\Downloads\Fire*.exe"
 $RemoveFile1 = $env:USERPROFILE + "\Downloads\Mozilla*.exe"
