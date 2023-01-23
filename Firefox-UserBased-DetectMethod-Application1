@@ -1,4 +1,4 @@
-﻿$AppName = "*Firefox*"
+$AppName = "*Firefox*"
 $Path = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
 $subkeys = Get-ChildItem -Path $Path 
 $flag = $false
