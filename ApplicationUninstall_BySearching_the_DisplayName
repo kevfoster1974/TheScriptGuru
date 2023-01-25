@@ -1,5 +1,6 @@
-﻿# Remediation script
-# Check if WireSharkis installed if so ... then this script will remove it
+# Remediation script
+# Check if WireShark is installed by searching the registry via the display name, and 
+# if found it will obtain the uninstall string using the silent switch
  
 # Author: Kevin Foster
 # Date: 24th January 2023
